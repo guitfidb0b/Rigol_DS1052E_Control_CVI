@@ -1,0 +1,1 @@
+-force-include-file "RigolControlUI.c";"c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c" 

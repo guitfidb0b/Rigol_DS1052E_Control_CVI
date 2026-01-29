@@ -29,6 +29,8 @@
 #define  PANEL_VMAX                       14      /* control type: numeric, callback function: (none) */
 #define  PANEL_WAVEMEAS                   15      /* control type: command, callback function: waveDataCallback */
 #define  PANEL_WAVEFORM                   16      /* control type: graph, callback function: (none) */
+#define  PANEL_STOPACQ                    17      /* control type: command, callback function: stopAcqCallback */
+#define  PANEL_TIMER                      18      /* control type: timer, callback function: timerCallback */
 
 
      /* Control Arrays: */
@@ -49,7 +51,9 @@ int  CVICALLBACK measureCallback(int panel, int control, int event, void *callba
 int  CVICALLBACK panelCB(int panel, int event, void *callbackData, int eventData1, int eventData2);
 int  CVICALLBACK resetCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);
 int  CVICALLBACK runCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);
+int  CVICALLBACK stopAcqCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);
 int  CVICALLBACK stopCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);
+int  CVICALLBACK timerCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);
 int  CVICALLBACK waveDataCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);
 
 

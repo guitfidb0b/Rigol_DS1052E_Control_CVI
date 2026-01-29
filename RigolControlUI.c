@@ -59,8 +59,9 @@ static char instrResourceString[VI_FIND_BUFLEN];
 
 static unsigned char buffer[100];
 static char stringinput[512];
-static unsigned char waveData[5000];
-static double waveDataFloat[5000];
+static unsigned char waveData[500];
+static double waveDataFloat[500];
+static int globalStatus = 0;
 
 //==============================================================================
 // Static functions
@@ -129,6 +130,7 @@ int CVICALLBACK connectCallback (int panel, int control, int event,
 				SetCtrlAttribute(panelHandle, PANEL_AUTO, ATTR_DIMMED, 0);
 				SetCtrlAttribute(panelHandle, PANEL_MEASURE, ATTR_DIMMED, 0);
 				SetCtrlAttribute(panelHandle, PANEL_WAVEMEAS, ATTR_DIMMED, 0);
+				SetCtrlAttribute(panelHandle, PANEL_STOPACQ, ATTR_DIMMED, 0);
    			}
 			
 			break;
@@ -159,6 +161,7 @@ int CVICALLBACK resetCallback (int panel, int control, int event,
 			SetCtrlAttribute(panelHandle, PANEL_AUTO, ATTR_DIMMED, 1);
 			SetCtrlAttribute(panelHandle, PANEL_MEASURE, ATTR_DIMMED, 1);
 			SetCtrlAttribute(panelHandle, PANEL_WAVEMEAS, ATTR_DIMMED, 1);
+			SetCtrlAttribute(panelHandle, PANEL_STOPACQ, ATTR_DIMMED, 1);
 			SetCtrlVal(panelHandle, PANEL_VMAX, 0.0); 
 			SetCtrlVal(panelHandle, PANEL_VMIN, 0.0); 
 			SetCtrlVal(panelHandle, PANEL_VAVE, 0.0);
@@ -299,7 +302,41 @@ int CVICALLBACK waveDataCallback (int panel, int control, int event,
 	{
 		case EVENT_COMMIT:
 			
-			double timeScale;
+			SetCtrlAttribute(panelHandle, PANEL_TIMER, ATTR_ENABLED, 1);
+			
+			break;
+			
+		case EVENT_RIGHT_CLICK:
+
+			break;
+	}
+	return 0;
+}
+
+int CVICALLBACK stopAcqCallback (int panel, int control, int event,
+								 void *callbackData, int eventData1, int eventData2)
+{
+	switch (event)
+	{
+		case EVENT_COMMIT:
+			SetCtrlAttribute(panelHandle, PANEL_TIMER, ATTR_ENABLED, 0);
+			break;
+		case EVENT_RIGHT_CLICK:
+
+			break;
+	}
+	return 0;
+}
+
+int CVICALLBACK timerCallback (int panel, int control, int event,
+							   void *callbackData, int eventData1, int eventData2)
+{
+	/*
+	If Measure waveform pressed, enable Timer
+	acquire waveform data at timer polling rate
+	If stop pressed, disable timer
+	*/
+	double timeScale;
 			double timeOffset;
 			double voltScale;
 			double voltOffset;
@@ -325,7 +362,7 @@ int CVICALLBACK waveDataCallback (int panel, int control, int event,
 			status = viRead (instr, buffer, sizeof(buffer), &retCount);
 			timeOffset = atof(buffer);
 			
-			//Get volt scale
+	//Get volt scale
 			memset(buffer, '\0', sizeof(buffer));
 			strcpy (stringinput, ":CHAN1:SCAL?\n");
 			status = viWrite(instr, (ViBuf)stringinput, (ViUInt32)strlen(stringinput), &writeCount);
@@ -338,41 +375,49 @@ int CVICALLBACK waveDataCallback (int panel, int control, int event,
 			status = viRead (instr, buffer, sizeof(buffer), &retCount);
 			voltOffset = atof(buffer);
 			
-			//memset(buffer, '\0', sizeof(buffer));
-			strcpy (stringinput, ":WAV:POIN:MODE RAW\n");
-			status = viWrite(instr, (ViBuf)stringinput, (ViUInt32)strlen(stringinput), &writeCount);
-			strcpy (stringinput, ":WAV:DATA? CHAN1\n");
-			status = viWrite(instr, (ViBuf)stringinput, (ViUInt32)strlen(stringinput), &writeCount);
-			status = viRead (instr, waveData, sizeof(waveData), &retCount);
-			
 			memset(buffer, '\0', sizeof(buffer));
 			strcpy (stringinput, ":ACQ:SAMP?\n");
 			status = viWrite(instr, (ViBuf)stringinput, (ViUInt32)strlen(stringinput), &writeCount);
 			status = viRead (instr, buffer, sizeof(buffer), &retCount);
 			sampleRate = atof(buffer);
-			/*printf("SampleRate: %f", sampleRate);
-			printf("Timescale: %f\n", timeScale);*/	
-			
-			//Cast the ASCII data to int, 
-			for(int i = 0; i < sizeof(waveData); i++){
-				waveDataInt[i] = (int)waveData[i];
-				waveDataFloat[i] = waveDataInt[i]*(-1) + 255;
-				waveDataFloat[i] = (waveDataFloat[i] - 130.0 - voltOffset/voltScale*25)/25*voltScale;
-				//printf("Converted Data: %f\n", waveDataFloat[i]);
-			}	
-			
-			
 			
 			xGainValue = 1/sampleRate;
 			
-			DeleteGraphPlot(panelHandle, PANEL_WAVEFORM, -1, VAL_IMMEDIATE_DRAW);
-			PlotY(panelHandle, PANEL_WAVEFORM, waveDataFloat, 5000, VAL_DOUBLE, VAL_THIN_LINE, VAL_EMPTY_SQUARE, VAL_SOLID, 1, VAL_RED);
-			SetCtrlAttribute(panelHandle, PANEL_WAVEFORM, ATTR_XAXIS_GAIN, xGainValue);
+			/*memset(buffer, '\0', sizeof(buffer));
+			strcpy (stringinput, ":ACQ:MODE?\n");
+			status = viWrite(instr, (ViBuf)stringinput, (ViUInt32)strlen(stringinput), &writeCount);
+			status = viRead (instr, buffer, sizeof(buffer), &retCount);
+			printf("Returned Val: %s", buffer);
+			*///sampleRate = atof(buffer);
 			
-			break;
-		case EVENT_RIGHT_CLICK:
-
-			break;
-	}
+			/*printf("SampleRate: %f", sampleRate);
+			printf("Timescale: %f\n", timeScale);*/	
+			
+			
+			
+			//while(globalStatus != 1){
+			//Cast the ASCII data to int, 
+				//if(globalStatus == 1){
+				//	break;
+				//}
+				//else{
+				memset(waveData, '\0', sizeof(waveData));
+					strcpy (stringinput, ":WAV:POIN:MODE RAW\n");
+					status = viWrite(instr, (ViBuf)stringinput, (ViUInt32)strlen(stringinput), &writeCount);
+					strcpy (stringinput, ":WAV:DATA? CHAN1\n");
+					status = viWrite(instr, (ViBuf)stringinput, (ViUInt32)strlen(stringinput), &writeCount);
+					status = viRead (instr, waveData, sizeof(waveData), &retCount);
+					
+					for(int i = 0; i < sizeof(waveData); i++){
+						waveDataInt[i] = (int)waveData[i];
+						waveDataFloat[i] = waveDataInt[i]*(-1) + 255;
+						waveDataFloat[i] = (waveDataFloat[i] - 130.0 - voltOffset/voltScale*25)/25*voltScale;
+					}	
+					DeleteGraphPlot(panelHandle, PANEL_WAVEFORM, -1, VAL_IMMEDIATE_DRAW);
+					PlotY(panelHandle, PANEL_WAVEFORM, waveDataFloat, 500, VAL_DOUBLE, VAL_THIN_LINE, VAL_EMPTY_SQUARE, VAL_SOLID, 1, VAL_RED);
+					SetCtrlAttribute(panelHandle, PANEL_WAVEFORM, ATTR_XAXIS_GAIN, xGainValue);
+				//}
+			//}
+	
 	return 0;
 }
