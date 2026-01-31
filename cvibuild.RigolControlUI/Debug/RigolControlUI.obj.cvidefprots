@@ -1,55 +1,55 @@
 [main]
 Class="Function"
 Prototype="int main(int argc, char *argv[]);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:76:5"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:77:5"
 
 [panelCB]
 Class="Function"
 Prototype="int panelCB(int panel, int event, void *callbackData, int eventData1, int eventData2);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:99:17"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:100:17"
 
 [connectCallback]
 Class="Function"
 Prototype="int connectCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:107:17"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:108:17"
 
 [resetCallback]
 Class="Function"
 Prototype="int resetCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:144:17"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:140:17"
 
 [runCallback]
 Class="Function"
 Prototype="int runCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:180:17"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:183:17"
 
 [stopCallback]
 Class="Function"
 Prototype="int stopCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:198:17"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:202:17"
 
 [autoCallback]
 Class="Function"
 Prototype="int autoCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:216:17"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:220:17"
 
 [measureCallback]
 Class="Function"
 Prototype="int measureCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:234:17"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:238:17"
 
 [waveDataCallback]
 Class="Function"
 Prototype="int waveDataCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:298:17"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:350:17"
 
 [stopAcqCallback]
 Class="Function"
 Prototype="int stopAcqCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:316:17"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:368:17"
 
 [timerCallback]
 Class="Function"
 Prototype="int timerCallback(int panel, int control, int event, void *callbackData, int eventData1, int eventData2);"
-SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:331:17"
+SourceLocation="c:\Users\Public\Documents\National Instruments\CVI2020\LabWin Projects\Rigol_DS1052E_Control_CVI\RigolControlUI.c:383:17"
 

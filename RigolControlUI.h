@@ -21,16 +21,22 @@
 #define  PANEL_STOP                       6       /* control type: command, callback function: stopCallback */
 #define  PANEL_RUN                        7       /* control type: command, callback function: runCallback */
 #define  PANEL_MEASURE                    8       /* control type: command, callback function: measureCallback */
-#define  PANEL_PER                        9       /* control type: numeric, callback function: (none) */
-#define  PANEL_FREQ                       10      /* control type: numeric, callback function: (none) */
-#define  PANEL_VRMS                       11      /* control type: numeric, callback function: (none) */
-#define  PANEL_VAVE                       12      /* control type: numeric, callback function: (none) */
-#define  PANEL_VMIN                       13      /* control type: numeric, callback function: (none) */
-#define  PANEL_VMAX                       14      /* control type: numeric, callback function: (none) */
-#define  PANEL_WAVEMEAS                   15      /* control type: command, callback function: waveDataCallback */
-#define  PANEL_WAVEFORM                   16      /* control type: graph, callback function: (none) */
-#define  PANEL_STOPACQ                    17      /* control type: command, callback function: stopAcqCallback */
-#define  PANEL_TIMER                      18      /* control type: timer, callback function: timerCallback */
+#define  PANEL_PERCHAN2                   9       /* control type: numeric, callback function: (none) */
+#define  PANEL_PERCHAN1                   10      /* control type: numeric, callback function: (none) */
+#define  PANEL_FREQCHAN2                  11      /* control type: numeric, callback function: (none) */
+#define  PANEL_FREQCHAN1                  12      /* control type: numeric, callback function: (none) */
+#define  PANEL_VRMSCHAN2                  13      /* control type: numeric, callback function: (none) */
+#define  PANEL_VRMSCHAN1                  14      /* control type: numeric, callback function: (none) */
+#define  PANEL_VAVECHAN2                  15      /* control type: numeric, callback function: (none) */
+#define  PANEL_VAVECHAN1                  16      /* control type: numeric, callback function: (none) */
+#define  PANEL_VMINCHAN2                  17      /* control type: numeric, callback function: (none) */
+#define  PANEL_VMINCHAN1                  18      /* control type: numeric, callback function: (none) */
+#define  PANEL_VMAXCHAN2                  19      /* control type: numeric, callback function: (none) */
+#define  PANEL_VMAXCHAN1                  20      /* control type: numeric, callback function: (none) */
+#define  PANEL_WAVEMEAS                   21      /* control type: command, callback function: waveDataCallback */
+#define  PANEL_WAVEFORM                   22      /* control type: graph, callback function: (none) */
+#define  PANEL_STOPACQ                    23      /* control type: command, callback function: stopAcqCallback */
+#define  PANEL_TIMER                      24      /* control type: timer, callback function: timerCallback */
 
 
      /* Control Arrays: */
